@@ -8,7 +8,7 @@ public record Veiculo(
         @JsonAlias("Valor") String valor,
         @JsonAlias("Marca") String marca,
         @JsonAlias("Modelo") String modelo,
-        @JsonAlias("AnoModelo") int anoModelo, // Alterado para int
+        @JsonAlias("AnoModelo") int anoModelo,
         @JsonAlias("Combustivel") String combustivel,
         @JsonAlias("MesReferencia") String mesReferencia
 ) {}

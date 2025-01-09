@@ -4,7 +4,9 @@ public class Menu {
 
     public void menuInicial(){
         System.out.println("""
+                 
                  Bem-vindo(a) à consulta tabela FIPE
+                 
                 Aqui você encontrará a aplicação ideal
                 
                 Escolha uma das opções abaixo para consultar valores
@@ -13,11 +15,9 @@ public class Menu {
                 
                 Motos
                 
-                Caminhoes
+                Caminhões
                                
                 """);
-
-
     }
 
     public void modeloCarro(){

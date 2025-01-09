@@ -1,5 +1,6 @@
 package Service;
 
+import Model.Veiculo;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JavaType;
@@ -45,9 +46,8 @@ public class ConverterDados implements IConverteDados {
     // Método adicional para verificar o tipo de resposta da API (objeto ou lista)
     public <T> List<T> obterListaSeForObjetoOuLista(String json, TypeReference<List<T>> tipoReferencia) {
         try {
-            // Se o JSON for um objeto único (não uma lista), vamos tentar desserializar como um único item primeiro
-            if (json.trim().startsWith("{")) {  // Verifica se começa com um objeto
-                // Mudança sugerida para usar JavaType
+            if (json.trim().startsWith("{")) { 
+
                 JavaType javaType = mapper.getTypeFactory().constructType(tipoReferencia.getType());
                 T objeto = mapper.readValue(json, javaType);  // Lê como tipo da referência diretamente
                 return List.of(objeto);  // Retorna uma lista contendo o objeto único
@@ -56,5 +56,15 @@ public class ConverterDados implements IConverteDados {
         } catch (JsonProcessingException e) {
             throw new RuntimeException("Erro ao tentar desserializar o JSON em lista ou objeto", e);
         }
+    }
+
+
+    public Veiculo obterListaSeForObjetoOuLista(String json, Class<Veiculo> veiculoClass) {
+        try {
+            return mapper.readValue(json, veiculoClass);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException("Erro ao deserializar o JSON", e);
+        }
+
     }
 }
